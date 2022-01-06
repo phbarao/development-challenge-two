@@ -20,12 +20,21 @@ exports.handler = async (event, context) => {
             TableName: 'med-challenge-patients',
             Item: {
               id: requestJSON.id,
-              price: requestJSON.price,
               name: requestJSON.name,
+              birthDate: requestJSON.birthDate,
+              email: requestJSON.email,
+              address: {
+                street: requestJSON.address.street,
+                number: requestJSON.address.number,
+                zipCode: requestJSON.address.zipCode,
+                city: requestJSON.address.city,
+                state: requestJSON.address.state,
+              },
+              whatsapp: requestJSON.address.whatsapp,
             },
           })
           .promise();
-        body = `Put item ${requestJSON.id}`;
+        body = `Success!`;
         break;
 
       case 'GET /patients':

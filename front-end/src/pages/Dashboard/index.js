@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
 
 function Dashboard() {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    async function loadPatients() {
-      const items = await api.get('/patients');
-
-      setPatients(items.data.Items);
-    }
-
-    loadPatients();
+    api.get('/patients').then((response) => setPatients(response.data.Items));
   }, []);
 
   return (
@@ -22,6 +17,7 @@ function Dashboard() {
           <li key={patient.id}>{patient.name}</li>
         ))}
       </ul>
+      <Link to="/create-patient">Cadastrar paciente</Link>
     </>
   );
 }
