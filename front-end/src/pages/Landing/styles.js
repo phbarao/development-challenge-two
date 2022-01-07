@@ -6,7 +6,11 @@ export const Container = styled.div`
   height: 100vh;
   background-color: #4967cf;
   display: flex;
-  align-items: center;
+  justify-content: center;
+
+  .animation-div {
+    width: 100%;
+  }
 `;
 
 export const Content = styled.div`
