@@ -41,10 +41,11 @@ export const MenuItem = styled(Link)`
   justify-content: space-between;
   border-radius: 10px;
   transition: 0.3s;
-  padding: 0 10%;
+  padding: 0 8%;
 
   p {
     font-size: 18px;
+    margin-right: -10px;
   }
 
   svg {
