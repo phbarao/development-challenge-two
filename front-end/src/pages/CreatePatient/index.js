@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
 import { Container, Form, Label, Input, Button } from './styles';
+import whiteLogo from '../../assets/white-logo.svg';
 
 const initialValue = {
   name: '',
@@ -37,7 +38,9 @@ function CreatePatient() {
 
   return (
     <Container>
-      <h1>Create Patient</h1>
+      <img className="logo" src={whiteLogo} alt="GoBarber" />
+
+      <h1 className="title">Create Patient</h1>
 
       <Form onSubmit={handleSubmit}>
         <Label htmlFor="id">
@@ -50,6 +53,10 @@ function CreatePatient() {
           <Input name="name" type="text" onChange={handleInputChange} />
         </Label>
 
+        <Label htmlFor="email">
+          E-mail
+          <Input id name="email" type="email" onChange={handleInputChange} />
+        </Label>
         <Label htmlFor="name">
           E-mail
           <Input name="email" type="email" onChange={handleInputChange} />

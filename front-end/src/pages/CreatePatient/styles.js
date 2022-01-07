@@ -8,10 +8,22 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  .logo {
+    width: 70px;
+    margin-bottom: 30px;
+  }
+
+  .title {
+    color: #fff;
+    font-weight: 700;
+  }
 `;
 
 export const Form = styled.form`
-  width: 100%;
+  width: 80%;
+  max-width: 500px;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
