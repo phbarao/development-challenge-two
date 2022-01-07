@@ -8,4 +8,12 @@ export default createGlobalStyle`
 
     font-family: 'Source Sans Pro', sans-serif;
   }
+
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+  }
 `;

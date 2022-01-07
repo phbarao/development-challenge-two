@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import api from '../../services/api';
+import { Container, Form, Label, Input, Button } from './styles';
 
 const initialValue = {
   name: '',
@@ -35,44 +36,29 @@ function CreatePatient() {
   };
 
   return (
-    <>
+    <Container>
       <h1>Create Patient</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="id">
+      <Form onSubmit={handleSubmit}>
+        <Label htmlFor="id">
           ID
-          <input
-            value={values.id}
-            name="id"
-            type="text"
-            onChange={handleInputChange}
-          />
-        </label>
+          <Input name="id" type="text" onChange={handleInputChange} required />
+        </Label>
 
-        <label htmlFor="name">
+        <Label htmlFor="name">
           Nome
-          <input
-            value={values.name}
-            name="name"
-            type="text"
-            onChange={handleInputChange}
-          />
-        </label>
+          <Input name="name" type="text" onChange={handleInputChange} />
+        </Label>
 
-        <label htmlFor="email">
+        <Label htmlFor="name">
           E-mail
-          <input
-            value={values.email}
-            name="email"
-            type="email"
-            onChange={handleInputChange}
-          />
-        </label>
+          <Input name="email" type="email" onChange={handleInputChange} />
+        </Label>
 
-        <button type="submit">Salvar</button>
-      </form>
+        <Button type="submit">Salvar</Button>
+      </Form>
       <Link to="/">Voltar</Link>
-    </>
+    </Container>
   );
 }
 
