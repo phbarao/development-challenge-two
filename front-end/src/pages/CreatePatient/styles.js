@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  background-color: lightblue;
+  background-color: #37ccd7;
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -41,6 +41,7 @@ export const Button = styled.button`
   width: 100%;
   height: 40px;
   border: none;
-  background-color: aqua;
-  color: #111;
+  background-color: #4967cf;
+  color: #fff;
+  border-radius: 5px;
 `;
