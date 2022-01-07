@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../services/api';
-import { Container } from '../CreatePatient/styles';
+import { Container } from './styles';
 
-function Dashboard() {
+function ListPatients() {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ function Dashboard() {
 
   return (
     <Container>
-      <h1>Dashboard</h1>
+      <h1>ListPatients</h1>
 
       <ul>
         {patients.map((patient) => (
@@ -24,4 +24,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default ListPatients;
