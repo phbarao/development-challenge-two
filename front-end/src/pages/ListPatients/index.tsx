@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
 import { Container } from './styles';
-import { Patient } from '../CreatePatient';
+import { PatientTypes } from '../CreatePatient';
 
 const ListPatients: React.FC = () => {
-  const [patients, setPatients] = useState<Patient[]>([]);
+  const [patients, setPatients] = useState<PatientTypes[]>([]);
 
   const handleDelete = async (id: string): Promise<void> => {
     await api.delete(`/patients/${id}`);
 
-    const newArray = patients.filter((item) => item.id !== id);
-    setPatients(newArray);
+    const updatedPatients = patients.filter((item) => item.id !== id);
+    setPatients(updatedPatients);
   };
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const ListPatients: React.FC = () => {
     <Container>
       <h1>ListPatients</h1>
 
-      <table>
+      <table style={{ textAlign: 'center', fontSize: '14px' }}>
         <thead>
           <tr>
             <th>Nome</th>
@@ -42,7 +42,10 @@ const ListPatients: React.FC = () => {
               <td>{patient.birthDate}</td>
               <td>{patient.email}</td>
               <td>{patient.phone}</td>
-              <td>{patient.address.street}</td>
+              <td>
+                {`${patient.address.street}, ${patient.address.number}.
+                  ${patient.address.city}-${patient.address.state}`}
+              </td>
               <td>
                 <button
                   name={patient.id}

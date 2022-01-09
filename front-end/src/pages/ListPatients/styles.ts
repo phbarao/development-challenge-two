@@ -7,4 +7,11 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  table,
+  td {
+    border: 1px solid #333;
+    border-collapse: collapse;
+    padding: 5px;
+  }
 `;

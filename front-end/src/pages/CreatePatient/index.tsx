@@ -1,13 +1,12 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-// import * as Yup from 'yup';
 
 import api from '../../services/api';
 import whiteLogo from '../../assets/white-logo.svg';
 import Input from '../../components/Input';
 import { Container, Form, Button } from './styles';
 
-export interface Patient {
+export interface PatientTypes {
   id?: string;
   name: string;
   birthDate: string;
@@ -21,39 +20,33 @@ export interface Patient {
   };
 }
 
-// interface CreatePatientFormData {
-//   name: string;
-//   birthDate: string;
-//   email: string;
-//   phone: string;
-//   address: {
-//     street: string;
-//     number: string;
-//     city: string;
-//     state: string;
-//   };
-// }
-
-const initialValue = {
-  name: '',
-  birthDate: '',
-  email: '',
-  phone: '',
-  address: {
-    street: '',
-    number: '',
-    city: '',
-    state: '',
-  },
-};
-
 const CreatePatient: React.FC = () => {
-  const [values, setValues] = useState<Patient>(initialValue);
+  const [values, setValues] = useState<PatientTypes>({
+    name: '',
+    birthDate: '',
+    email: '',
+    phone: '',
+    address: {
+      street: '',
+      number: '',
+      city: '',
+      state: '',
+    },
+  });
 
   const history = useHistory();
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
+
+    if (
+      name === 'street' ||
+      name === 'number' ||
+      name === 'city' ||
+      name === 'state'
+    ) {
+      values.address[name] = value;
+    }
 
     setValues({ ...values, [name]: value });
   };
@@ -62,7 +55,8 @@ const CreatePatient: React.FC = () => {
     e.preventDefault();
 
     await api.post('/patients', values);
-    history.push('/');
+
+    history.push('/list-patients');
   };
 
   return (
@@ -99,8 +93,8 @@ const CreatePatient: React.FC = () => {
           />
 
           <Input
-            type="phoneNumber"
-            name="phoneNumber"
+            type="phone"
+            name="phone"
             placeholder="Telefone para contato:"
             onChange={handleInputChange}
           />
