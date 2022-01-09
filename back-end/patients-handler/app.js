@@ -23,14 +23,13 @@ exports.handler = async (event, context) => {
               name: requestJSON.name,
               birthDate: requestJSON.birthDate,
               email: requestJSON.email,
+              phone: requestJSON.phone,
               address: {
                 street: requestJSON.address.street,
                 number: requestJSON.address.number,
-                zipCode: requestJSON.address.zipCode,
                 city: requestJSON.address.city,
                 state: requestJSON.address.state,
               },
-              whatsapp: requestJSON.address.whatsapp,
             },
           })
           .promise();
