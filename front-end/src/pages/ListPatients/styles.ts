@@ -74,6 +74,11 @@ export const PatientsList = styled.div`
     font-weight: 400;
   }
 
+  .empty {
+    text-align: center;
+    color: #a2a2a2;
+  }
+
   .top-block {
     display: flex;
     align-items: center;

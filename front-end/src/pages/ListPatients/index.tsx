@@ -55,8 +55,8 @@ const ListPatients: React.FC = () => {
 
           <PatientsList>
             {patients.length === 0 ? (
-              <PatientItem className="empty">
-                <h3>Nenhum paciente cadastrado</h3>
+              <PatientItem>
+                <h3 className="empty">Nenhum paciente cadastrado</h3>
               </PatientItem>
             ) : (
               patients.map((patient) => (
