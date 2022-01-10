@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { fadeIn } from '../../utils/animations';
+
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
@@ -20,6 +22,7 @@ export const Content = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  animation: ${fadeIn} 1s;
 
   .logo {
     width: 100px;
@@ -47,6 +50,11 @@ export const MenuItem = styled(Link)`
   transition: 0.3s;
   padding: 0 8%;
 
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: 0.3s;
+  }
+
   p {
     font-size: 18px;
     margin-right: -10px;
@@ -69,10 +77,5 @@ export const MenuItem = styled(Link)`
   .arrow-icon {
     font-size: 30px;
     margin-right: -10px;
-  }
-
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: 0.3s;
   }
 `;

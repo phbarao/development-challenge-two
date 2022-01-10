@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, memo } from 'react';
+import React, { ChangeEvent, InputHTMLAttributes, memo } from 'react';
 
 import { InputContainer } from './styles';
 
@@ -6,7 +6,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   placeholder: string;
   type: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input: React.FC<InputProps> = ({ name, type, placeholder, onChange }) => {

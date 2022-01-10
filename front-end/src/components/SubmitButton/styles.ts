@@ -1,20 +1,17 @@
 import styled from 'styled-components';
 
-export const InputContainer = styled.input`
+export const Container = styled.button`
   width: 100%;
   height: 40px;
   border: none;
+  background-color: #37ccd7;
+  font-weight: 700;
+  color: #fff;
   border-radius: 5px;
-  padding: 0 15px;
   transition: 0.3s;
-  margin-bottom: 5px;
-
-  ::placeholder {
-    color: #000000;
-  }
 
   &:hover {
-    background-color: #f4f4f4;
+    background-color: #4ad6e0;
     transition: 0.3s;
   }
 `;

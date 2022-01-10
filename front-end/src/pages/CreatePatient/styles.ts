@@ -1,15 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-
-const appearFromRight = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
+import styled from 'styled-components';
+import { fadeIn } from '../../utils/animations';
 
 export const Container = styled.div`
   background-color: #6d85d9;
@@ -22,19 +12,17 @@ export const Container = styled.div`
 
   header {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 15px;
-  }
-
-  .logo {
-    width: 30px;
-    margin-right: 10px;
-  }
-
-  .title {
+    /* margin-bottom: 15px; */
     color: #fff;
     font-size: 18px;
     font-weight: 700;
+  }
+
+  .logo {
+    width: 40px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -46,13 +34,12 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
 
-  animation: ${appearFromRight} 1s;
+  animation: ${fadeIn} 1s;
 
   fieldset {
     border: 1px solid #fff;
     border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 10px;
+    padding: 15px;
 
     legend {
       color: #fff;
@@ -68,7 +55,7 @@ export const Form = styled.form`
     gap: 5px;
 
     input:last-child {
-      width: 30%;
+      width: 45%;
     }
   }
 `;
@@ -82,6 +69,7 @@ export const Button = styled.button`
   color: #fff;
   border-radius: 5px;
   transition: 0.3s;
+  margin-top: 10px;
 
   &:hover {
     background-color: #4ad6e0;

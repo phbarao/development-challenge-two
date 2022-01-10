@@ -1,5 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 
@@ -9,6 +9,7 @@ import { patientsInitialState } from '../../utils/constants';
 import Input from '../../components/Input';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import { Container, Form, Button } from './styles';
+import BackButton from '../../components/BackButton';
 
 export interface PatientTypes {
   id?: string;
@@ -50,21 +51,21 @@ const CreatePatient: React.FC = () => {
 
     setLoading(true);
 
+    const schema = Yup.object().shape({
+      name: Yup.string().required(),
+      birthDate: Yup.date().required(),
+      email: Yup.string().email(),
+      phone: Yup.string(),
+      address: Yup.object().shape({
+        street: Yup.string(),
+        number: Yup.string(),
+        city: Yup.string(),
+        state: Yup.string(),
+      }),
+    });
+
     try {
       // Validate form data
-      const schema = Yup.object().shape({
-        name: Yup.string().required(),
-        birthDate: Yup.date().required(),
-        email: Yup.string().email(),
-        phone: Yup.string(),
-        address: Yup.object().shape({
-          street: Yup.string(),
-          number: Yup.string(),
-          city: Yup.string(),
-          state: Yup.string(),
-        }),
-      });
-
       await schema.validate(values, {
         abortEarly: false,
       });
@@ -94,24 +95,27 @@ const CreatePatient: React.FC = () => {
       <header>
         <img className="logo" src={whiteLogo} alt="Med App" />
 
-        <h2 className="title">Cadastrar Paciente</h2>
+        <h2>Cadastrar Paciente</h2>
       </header>
 
       <Form onSubmit={handleSubmit}>
-        <Input
-          required
-          type="text"
-          name="name"
-          placeholder="Nome do paciente:"
-          onChange={handleInputChange}
-        />
+        <fieldset>
+          <legend>Campost obrigatórios</legend>
+          <Input
+            required
+            type="text"
+            name="name"
+            placeholder="Nome do paciente:"
+            onChange={handleInputChange}
+          />
 
-        <Input
-          type="date"
-          name="birthDate"
-          placeholder="Data de nascimento:"
-          onChange={handleInputChange}
-        />
+          <Input
+            type="date"
+            name="birthDate"
+            placeholder="Data de nascimento:"
+            onChange={handleInputChange}
+          />
+        </fieldset>
 
         <fieldset>
           <legend>Contato</legend>
@@ -167,12 +171,12 @@ const CreatePatient: React.FC = () => {
           </div>
         </fieldset>
 
-        <Button type="submit">
-          {loading ? <LoadingSpinner size={30} color="#fff" /> : 'Salvar'}
+        <Button title="Salvar">
+          {loading ? <LoadingSpinner color="#fff" size={30} /> : 'Salvar'}
         </Button>
       </Form>
 
-      <Link to="/">Voltar</Link>
+      <BackButton path="/list-patients" title="Voltar para lista" />
     </Container>
   );
 };
