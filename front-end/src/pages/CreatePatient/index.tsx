@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
+import { toast } from 'react-toastify';
 import api from '../../services/api';
 import whiteLogo from '../../assets/white-logo.svg';
 import Input from '../../components/Input';
@@ -39,20 +40,24 @@ const CreatePatient: React.FC = () => {
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
 
-    if (
-      name === 'street' ||
-      name === 'number' ||
-      name === 'city' ||
-      name === 'state'
-    ) {
-      values.address[name] = value;
-    }
-
     setValues({ ...values, [name]: value });
+  };
+
+  const handleAddressInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target;
+
+    const updatedPatients = { ...values };
+    updatedPatients.address[name] = value;
+
+    setValues(updatedPatients);
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
+
+    if (!values.name) {
+      toast.error('O nome é obrigatório.');
+    }
 
     await api.post('/patients', values);
 
@@ -108,14 +113,14 @@ const CreatePatient: React.FC = () => {
               type="text"
               name="street"
               placeholder="Nome da rua:"
-              onChange={handleInputChange}
+              onChange={handleAddressInputChange}
             />
 
             <Input
               type="text"
               name="number"
               placeholder="Número:"
-              onChange={handleInputChange}
+              onChange={handleAddressInputChange}
             />
           </div>
 
@@ -124,14 +129,14 @@ const CreatePatient: React.FC = () => {
               type="text"
               name="city"
               placeholder="Cidade:"
-              onChange={handleInputChange}
+              onChange={handleAddressInputChange}
             />
 
             <Input
               type="text"
               name="state"
               placeholder="Estado:"
-              onChange={handleInputChange}
+              onChange={handleAddressInputChange}
             />
           </div>
         </fieldset>

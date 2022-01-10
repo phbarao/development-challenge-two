@@ -9,6 +9,7 @@ export const Container = styled.div`
   justify-content: center;
 
   table,
+  th,
   td {
     border: 1px solid #333;
     border-collapse: collapse;
