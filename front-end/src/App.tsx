@@ -7,8 +7,8 @@ import Routes from './routes';
 const App: React.FC = () => {
   return (
     <>
-      <Routes />;
-      <ToastContainer autoClose={2000} />
+      <Routes />
+      <ToastContainer autoClose={3000} style={{ width: '300px' }} />
     </>
   );
 };

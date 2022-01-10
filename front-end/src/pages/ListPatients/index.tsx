@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
-import { Container } from './styles';
+import { formatDate } from '../../utils/formatDate';
+import { Container, PatientsList, PatientItem } from './styles';
 import { PatientTypes } from '../CreatePatient';
 import LoadingSpinner from '../../components/LoadingSpinner';
 
 const ListPatients: React.FC = () => {
   const [patients, setPatients] = useState<PatientTypes[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleDelete = async (id: string): Promise<void> => {
-    setLoading(true);
     await api.delete(`/patients/${id}`);
 
     const updatedPatients = patients.filter((item) => item.id !== id);
@@ -19,54 +19,39 @@ const ListPatients: React.FC = () => {
   };
 
   useEffect(() => {
-    api.get('/patients').then((response) => setPatients(response.data.Items));
+    const loadPatients = async (): Promise<void> => {
+      setLoading(true);
+
+      const response = await api.get('/patients');
+
+      setPatients(response.data.Items);
+      setLoading(false);
+    };
+
+    loadPatients();
   }, []);
 
   return (
     <Container>
-      <h1>ListPatients</h1>
-
+      <h1>Pacientes Cadastrados</h1>
       {loading ? (
-        <LoadingSpinner />
+        <LoadingSpinner size={30} color="#6d85d9" />
       ) : (
-        <table style={{ textAlign: 'center', fontSize: '14px' }}>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Nascimento</th>
-              <th>E-mail</th>
-              <th>Telefone</th>
-              <th>Endereço</th>
-              <th>Remover</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {patients.map((patient) => (
-              <tr key={patient.id}>
-                <td>{patient.name}</td>
-                <td>{patient.birthDate}</td>
-                <td>{patient.email}</td>
-                <td>{patient.phone}</td>
-                <td>
-                  {`${patient.address.street}, ${patient.address.number}.
-                  ${patient.address.city}-${patient.address.state}`}
-                </td>
-                <td>
-                  <button
-                    name={patient.id}
-                    type="button"
-                    onClick={() => handleDelete(patient.id)}
-                  >
-                    X
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <PatientsList>
+          {patients.map((patient) => (
+            <PatientItem>
+              <h3>{patient.name}</h3>
+              <p>Data de Nascimento: {formatDate(patient.birthDate)} </p>
+              <p>Email: {patient.email}</p>
+              <button type="button" onClick={() => handleDelete(patient.id)}>
+                X
+              </button>
+            </PatientItem>
+          ))}
+        </PatientsList>
       )}
 
+      <Link to="/">Página Inicial</Link>
       <Link to="/create-patient">Cadastrar paciente</Link>
     </Container>
   );

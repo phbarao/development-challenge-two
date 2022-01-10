@@ -1,4 +1,15 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const appearFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 export const Container = styled.div`
   background-color: #6d85d9;
@@ -35,6 +46,8 @@ export const Form = styled.form`
   flex-direction: column;
   justify-content: center;
 
+  animation: ${appearFromRight} 1s;
+
   fieldset {
     border: 1px solid #fff;
     border-radius: 5px;
@@ -50,10 +63,13 @@ export const Form = styled.form`
   }
 
   .address-group {
+    width: 100%;
     display: flex;
-    display: grid;
-    grid-template-columns: 80% 20%;
     gap: 5px;
+
+    input:last-child {
+      width: 30%;
+    }
   }
 `;
 
@@ -62,6 +78,13 @@ export const Button = styled.button`
   height: 40px;
   border: none;
   background-color: #37ccd7;
+  font-weight: 700;
   color: #fff;
   border-radius: 5px;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #4ad6e0;
+    transition: 0.3s;
+  }
 `;

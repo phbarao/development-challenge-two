@@ -9,6 +9,10 @@ export const InputContainer = styled.input`
   padding: 0 15px;
   transition: 0.3s;
 
+  ::placeholder {
+    color: #000000;
+  }
+
   &:hover {
     background-color: #f4f4f4;
     transition: 0.3s;

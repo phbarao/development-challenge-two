@@ -3,10 +3,15 @@ import { ImSpinner6 } from 'react-icons/im';
 
 import { Container } from './styles';
 
-const LoadingSpinner: React.FC = () => {
+interface SpinnerProps {
+  color: string;
+  size: number;
+}
+
+const LoadingSpinner: React.FC<SpinnerProps> = ({ color, size }) => {
   return (
     <Container>
-      <ImSpinner6 size={30} color="#6d85d9" />
+      <ImSpinner6 size={size} color={color} />
     </Container>
   );
 };

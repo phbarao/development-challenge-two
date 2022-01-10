@@ -5,14 +5,16 @@ import { InputContainer } from './styles';
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   placeholder: string;
+  type: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<InputProps> = ({ name, placeholder, onChange }) => {
+const Input: React.FC<InputProps> = ({ name, type, placeholder, onChange }) => {
   return (
     <InputContainer
       id={name}
       name={name}
-      type="text"
+      type={type}
       placeholder={placeholder}
       onChange={onChange}
     />

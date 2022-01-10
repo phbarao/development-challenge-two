@@ -16,3 +16,15 @@ export const Container = styled.div`
     padding: 5px;
   }
 `;
+
+export const PatientsList = styled.div`
+  width: 80%;
+  background-color: lightgray;
+  padding: 20px;
+`;
+
+export const PatientItem = styled.div`
+  width: 100%;
+  border-bottom: 1px solid #fff;
+  padding: 10px;
+`;

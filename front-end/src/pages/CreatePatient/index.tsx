@@ -1,10 +1,13 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
+import * as Yup from 'yup';
 import { toast } from 'react-toastify';
+
 import api from '../../services/api';
 import whiteLogo from '../../assets/white-logo.svg';
+import { patientsInitialState } from '../../utils/constants';
 import Input from '../../components/Input';
+import LoadingSpinner from '../../components/LoadingSpinner';
 import { Container, Form, Button } from './styles';
 
 export interface PatientTypes {
@@ -22,18 +25,8 @@ export interface PatientTypes {
 }
 
 const CreatePatient: React.FC = () => {
-  const [values, setValues] = useState<PatientTypes>({
-    name: '',
-    birthDate: '',
-    email: '',
-    phone: '',
-    address: {
-      street: '',
-      number: '',
-      city: '',
-      state: '',
-    },
-  });
+  const [values, setValues] = useState<PatientTypes>(patientsInitialState);
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
 
@@ -55,13 +48,45 @@ const CreatePatient: React.FC = () => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
 
-    if (!values.name) {
-      toast.error('O nome é obrigatório.');
+    setLoading(true);
+
+    try {
+      // Validate form data
+      const schema = Yup.object().shape({
+        name: Yup.string().required(),
+        birthDate: Yup.date().required(),
+        email: Yup.string().email(),
+        phone: Yup.string(),
+        address: Yup.object().shape({
+          street: Yup.string(),
+          number: Yup.string(),
+          city: Yup.string(),
+          state: Yup.string(),
+        }),
+      });
+
+      await schema.validate(values, {
+        abortEarly: false,
+      });
+
+      // Save to dynamoDB
+      await api.post('/patients', values);
+
+      setLoading(false);
+      toast.success('Paciente cadastrado com sucesso.');
+
+      // Redirect to list page
+      history.push('/list-patients');
+    } catch (error) {
+      setLoading(false);
+
+      if (values.name === '' || values.birthDate === '') {
+        toast.error('Nome e data de nascimento são dados obrigatórios.');
+        return;
+      }
+
+      toast.error('Falha no cadastro, verifique os dados e tente novamente.');
     }
-
-    await api.post('/patients', values);
-
-    history.push('/list-patients');
   };
 
   return (
@@ -74,6 +99,7 @@ const CreatePatient: React.FC = () => {
 
       <Form onSubmit={handleSubmit}>
         <Input
+          required
           type="text"
           name="name"
           placeholder="Nome do paciente:"
@@ -81,7 +107,7 @@ const CreatePatient: React.FC = () => {
         />
 
         <Input
-          type="string"
+          type="date"
           name="birthDate"
           placeholder="Data de nascimento:"
           onChange={handleInputChange}
@@ -141,7 +167,9 @@ const CreatePatient: React.FC = () => {
           </div>
         </fieldset>
 
-        <Button type="submit">Salvar</Button>
+        <Button type="submit">
+          {loading ? <LoadingSpinner size={30} color="#fff" /> : 'Salvar'}
+        </Button>
       </Form>
 
       <Link to="/">Voltar</Link>
