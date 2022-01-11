@@ -46,11 +46,13 @@ const ListPatients: React.FC = () => {
           <header>
             <div className="title">
               <img className="logo" src={whiteLogo} alt="Med App" />
+
               <h1>Pacientes Cadastrados</h1>
             </div>
 
             <Link className="create-patient-button" to="/create-patient">
               <TiPlus size={22} />
+
               <p className="create-patient-text">Novo paciente</p>
             </Link>
           </header>
@@ -65,12 +67,14 @@ const ListPatients: React.FC = () => {
                 <PatientItem key={patient.id}>
                   <div className="top-block">
                     <h3 className="patient-name">{patient.name}</h3>
+
                     <button
                       type="button"
                       className="delete-button"
                       onClick={() => handleDelete(patient.id)}
                     >
                       <p>Remover</p>
+
                       <RiDeleteBack2Line size={25} />
                     </button>
                   </div>
@@ -81,6 +85,7 @@ const ListPatients: React.FC = () => {
                         <strong>Data de Nascimento: </strong>{' '}
                         {formatDate(patient.birthDate)}{' '}
                       </p>
+
                       <p>
                         {' '}
                         <strong>Email: </strong>

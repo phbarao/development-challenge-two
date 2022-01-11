@@ -9,7 +9,9 @@ const Routes: React.FC = () => (
   <Router>
     <Switch>
       <Route exact path="/" component={Landing} />
+
       <Route path="/create-patient" component={CreatePatient} />
+
       <Route path="/list-patients" component={ListPatients} />
     </Switch>
   </Router>

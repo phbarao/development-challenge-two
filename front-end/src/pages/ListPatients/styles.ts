@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { fadeIn } from '../../utils/animations';
 
 export const Container = styled.div`

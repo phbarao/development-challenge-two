@@ -17,13 +17,17 @@ const Landing: React.FC = () => {
         <Menu>
           <MenuItem className="menu-item" to="/create-patient">
             <MdOutlinePersonAddAlt className="patient-icon" />
+
             <p>Cadastrar Paciente</p>
+
             <MdKeyboardArrowRight className="arrow-icon" />
           </MenuItem>
 
           <MenuItem className="menu-item" to="/list-patients">
             <MdOutlineFormatListBulleted className="list-icon" />
+
             <p>Listar Pacientes</p>
+
             <MdKeyboardArrowRight className="arrow-icon" />
           </MenuItem>
         </Menu>
