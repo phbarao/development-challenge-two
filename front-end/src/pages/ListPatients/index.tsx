@@ -45,12 +45,21 @@ const ListPatients: React.FC = () => {
         <>
           <header>
             <div className="title">
-              <img className="logo" src={whiteLogo} alt="Med App" />
+              <img
+                data-cy="white-logo"
+                className="logo"
+                src={whiteLogo}
+                alt="Med App"
+              />
 
               <h1>Pacientes Cadastrados</h1>
             </div>
 
-            <Link className="create-patient-button" to="/create-patient">
+            <Link
+              data-cy="new-patient"
+              className="create-patient-button"
+              to="/create-patient"
+            >
               <TiPlus size={22} />
 
               <p className="create-patient-text">Novo paciente</p>

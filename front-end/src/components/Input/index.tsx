@@ -6,12 +6,20 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   placeholder: string;
   type: string;
+  dataCy?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input: React.FC<InputProps> = ({ name, type, placeholder, onChange }) => {
+const Input: React.FC<InputProps> = ({
+  dataCy,
+  name,
+  type,
+  placeholder,
+  onChange,
+}) => {
   return (
     <InputContainer
+      data-cy={dataCy}
       id={name}
       name={name}
       type={type}

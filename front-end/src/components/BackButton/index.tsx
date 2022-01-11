@@ -12,7 +12,7 @@ interface BackButtonProps {
 const BackButton: React.FC<BackButtonProps> = ({ title, path }) => {
   return (
     <Container>
-      <Link to={path}>
+      <Link data-cy="back-button" to={path}>
         <MdOutlineKeyboardBackspace color="#fff" size={30} />
         {title}
       </Link>

@@ -90,7 +90,12 @@ const CreatePatient: React.FC = () => {
   return (
     <Container>
       <header>
-        <img className="logo" src={whiteLogo} alt="Med App" />
+        <img
+          data-cy="white-logo"
+          className="logo"
+          src={whiteLogo}
+          alt="Med App"
+        />
 
         <h2>Cadastrar Paciente</h2>
       </header>
@@ -105,9 +110,11 @@ const CreatePatient: React.FC = () => {
             name="name"
             placeholder="Nome do paciente:"
             onChange={handleInputChange}
+            dataCy="name-input"
           />
 
           <Input
+            dataCy="birth-date-input"
             type="date"
             name="birthDate"
             placeholder="Data de nascimento:"
@@ -169,7 +176,7 @@ const CreatePatient: React.FC = () => {
           </div>
         </fieldset>
 
-        <Button title="Salvar">
+        <Button title="Salvar" data-cy="submit-button">
           {loading ? <LoadingSpinner color="#fff" size={30} /> : 'Salvar'}
         </Button>
       </Form>

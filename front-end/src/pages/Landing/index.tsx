@@ -12,10 +12,19 @@ const Landing: React.FC = () => {
   return (
     <Container>
       <Content>
-        <img className="logo" src={logoImg} alt="Med App" />
+        <img
+          data-cy="logo-image"
+          className="logo"
+          src={logoImg}
+          alt="Med App"
+        />
 
         <Menu>
-          <MenuItem className="menu-item" to="/create-patient">
+          <MenuItem
+            data-cy="create-button"
+            className="menu-item"
+            to="/create-patient"
+          >
             <MdOutlinePersonAddAlt className="patient-icon" />
 
             <p>Cadastrar Paciente</p>
@@ -23,7 +32,11 @@ const Landing: React.FC = () => {
             <MdKeyboardArrowRight className="arrow-icon" />
           </MenuItem>
 
-          <MenuItem className="menu-item" to="/list-patients">
+          <MenuItem
+            data-cy="list-button"
+            className="menu-item"
+            to="/list-patients"
+          >
             <MdOutlineFormatListBulleted className="list-icon" />
 
             <p>Listar Pacientes</p>
