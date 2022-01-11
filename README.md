@@ -4,9 +4,7 @@
 
 ## Preview
 
-**Live Demo:** https://react-styled-dropdown.netlify.app
-
-https://user-images.githubusercontent.com/62365336/137234108-b4b516c7-0080-4a9e-ba74-822d642b1912.mov
+https://user-images.githubusercontent.com/62365336/148961794-e1f6b668-9d43-407e-8956-4ec2b6a875db.mov
 
 ## Running
 
