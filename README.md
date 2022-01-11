@@ -22,6 +22,6 @@ https://user-images.githubusercontent.com/62365336/148961794-e1f6b668-9d43-407e-
 
 `npm i`
 
-Run:
+5. Run:
 
 `npm start`
