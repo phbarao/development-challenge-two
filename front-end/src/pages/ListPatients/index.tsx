@@ -28,7 +28,7 @@ const ListPatients: React.FC = () => {
 
       const response = await api.get('/patients');
 
-      setPatients(response.data.Items);
+      setPatients(response.data.body.Items);
       setLoading(false);
     };
 
