@@ -21,3 +21,7 @@ https://user-images.githubusercontent.com/62365336/148961794-e1f6b668-9d43-407e-
 4. Run:
 
 `npm start`
+
+## Testing
+
+`npm run cypress`
