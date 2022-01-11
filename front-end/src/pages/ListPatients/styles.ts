@@ -51,12 +51,19 @@ export const Container = styled.div`
       svg {
         margin-right: 10px;
       }
+    }
 
-      @media (max-width: 500px) {
-        .button-text {
-          text-align: center;
-          line-height: 16px;
+    @media (max-width: 500px) {
+      .create-patient-button {
+        width: 100px;
+        svg {
+          margin-right: 0;
         }
+      }
+
+      .create-patient-text {
+        text-align: center;
+        line-height: 16px;
       }
     }
   }
@@ -66,7 +73,6 @@ export const PatientsList = styled.div`
   width: 80%;
   max-width: 600px;
   border-radius: 10px;
-
   animation: ${fadeIn} 1s;
 
   h3 {
@@ -130,8 +136,8 @@ export const PatientsList = styled.div`
 
 export const PatientItem = styled.div`
   width: 100%;
-  padding: 15px;
   background-color: #fff;
+  padding: 15px;
   border-radius: 10px;
   margin-bottom: 5px;
 
@@ -146,4 +152,11 @@ export const PatientItem = styled.div`
       align-items: center;
     }
   }
+`;
+
+export const CenterSpinner = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

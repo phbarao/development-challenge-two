@@ -4,12 +4,12 @@ import { RiDeleteBack2Line } from 'react-icons/ri';
 import { TiPlus } from 'react-icons/ti';
 
 import api from '../../services/api';
-import { formatDate } from '../../utils/formatDate';
 import { PatientTypes } from '../CreatePatient';
+import { formatDate } from '../../utils/formatDate';
 import whiteLogo from '../../assets/white-logo.svg';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import BackButton from '../../components/BackButton';
-import { Container, PatientsList, PatientItem } from './styles';
+import { Container, PatientsList, PatientItem, CenterSpinner } from './styles';
 
 const ListPatients: React.FC = () => {
   const [patients, setPatients] = useState<PatientTypes[]>([]);
@@ -38,7 +38,9 @@ const ListPatients: React.FC = () => {
   return (
     <Container>
       {loading ? (
-        <LoadingSpinner size={40} color="#fff" />
+        <CenterSpinner>
+          <LoadingSpinner size={40} color="#fff" />
+        </CenterSpinner>
       ) : (
         <>
           <header>
@@ -49,7 +51,7 @@ const ListPatients: React.FC = () => {
 
             <Link className="create-patient-button" to="/create-patient">
               <TiPlus size={22} />
-              <p className="button-text">Novo paciente</p>
+              <p className="create-patient-text">Novo paciente</p>
             </Link>
           </header>
 

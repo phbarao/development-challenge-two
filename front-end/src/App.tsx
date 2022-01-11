@@ -8,7 +8,7 @@ const App: React.FC = () => {
   return (
     <>
       <Routes />
-      <ToastContainer autoClose={3000} style={{ width: '300px' }} />
+      <ToastContainer autoClose={2500} style={{ width: '300px' }} />
     </>
   );
 };
