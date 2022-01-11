@@ -100,7 +100,7 @@ const CreatePatient: React.FC = () => {
 
       <Form onSubmit={handleSubmit}>
         <fieldset>
-          <legend>Dados pessoais</legend>
+          <legend>Campos obrigatórios</legend>
           <Input
             required
             type="text"
